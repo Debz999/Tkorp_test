@@ -20,16 +20,6 @@ export class AnimalController {
     return this.animalService.create(data);
   }
 
-  @Get()
-  findAll(): Promise<animal[]> {
-    return this.animalService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<animal | null> {
-    return this.animalService.findOne(id);
-  }
-
   @Put(':id')
   update(
     @Param('id', ParseIntPipe) id: number,
