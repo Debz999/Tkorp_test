@@ -37,4 +37,29 @@ export class AnimalController {
   OwnerWithMostAnimals() {
     return this.animalService.ownerWithMostAnimals();
   }
+
+  @Get('most-Cat')
+  mostCat() {
+    return this.animalService.mostCat();
+  }
+
+  @Get('oldest-animal')
+  oldestAnimal() {
+    return this.animalService.oldestAnimal();
+  }
+
+  @Get('species')
+  mostRepresentedSpecies() {
+    return this.animalService.mostRepresentedSpecies();
+  }
+
+  @Get('heaviest')
+  heaviestAnimal() {
+    return this.animalService.heaviestAnimal();
+  }
+
+  @Get('heaviest-group')
+  heaviestAnimalGroup() {
+    return this.animalService.heaviestAnimalGroup();
+  }
 }
