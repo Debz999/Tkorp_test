@@ -47,6 +47,11 @@ export class AnimalService {
 
     const owner = await this.prisma.person.findUnique({
       where: { id: personId },
+      select: {
+        id: true,
+        lastName: true,
+        firstName: true,
+      },
     });
 
     if (!owner) return null;
@@ -141,7 +146,7 @@ export class AnimalService {
         breed: result.breed,
         color: result.color,
         dateOfBirth: result.dateOfBirth,
-        age: result.age,
+        age: Number(result.age),
       },
       owner: {
         lastName: result.lastName,

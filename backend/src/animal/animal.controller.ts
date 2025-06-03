@@ -33,8 +33,8 @@ export class AnimalController {
     return this.animalService.remove(id);
   }
 
-  @Get('owner-most-animals')
-  OwnerWithMostAnimals() {
+  @Get('most-animals')
+  ownerWithMostAnimals() {
     return this.animalService.ownerWithMostAnimals();
   }
 
