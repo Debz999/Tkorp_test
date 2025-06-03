@@ -9,11 +9,11 @@ export default function Home() {
   const questions = [
     {
       question: 'Quel animal est le plus vieux?',
-      path: '/',
+      path: '/oldest-animal',
     },
     {
       question: 'Quelle espèce est la mieux representée?',
-      path: '/',
+      path: '/most-represented-species',
     },
     {
       question: 'Qui possède le plus de chats ?',
@@ -21,19 +21,23 @@ export default function Home() {
     },
     {
       question: 'Qui possède le plus d’animaux ?',
-      path: '/',
+      path: '/most-animals',
     },
     {
       question: 'Qui possède l’animal le plus lourd ? Comment s’appelle cet animal et quel est son poids ?' ,
-      path: '/',
+      path: '/heaviest-animal',
+    },
+    {
+      question: 'Qui possède le groupe d’animaux le plus lourd ? Quel est le poids total de ce groupe d’animaux ?' ,
+      path: '/heaviest-animal-group',
     },
     {
       question: 'Liste des personnes' ,
-      path: '/',
+      path: '/list-person',
     },
     {
       question: 'Liste des animaux' ,
-      path: '/',
+      path: '/list-animal',
     },
     
   ];

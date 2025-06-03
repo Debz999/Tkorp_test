@@ -1,0 +1,78 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+type OwnerData = {
+  ownerId: string;
+  ownerName: string;
+  ownerFirstName: string;
+  numberOfAnimals: number;
+};
+
+export default function MostAnimalPage() {
+  const [owner, setOwner] = useState<OwnerData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+  fetch("http://localhost:3001/animal/most-animals")
+    .then((res) => {
+      if (!res.ok) throw new Error(`Erreur HTTP ${res.status}`);
+      return res.json();
+    })
+    .then((data) => {
+      if (data && data.owner) {
+        setOwner({
+          ownerId: data.owner.id.toString(),
+          ownerName: data.owner.lastName,
+          ownerFirstName: data.owner.firstName,
+          numberOfAnimals: data.animalCount,
+        });
+      } else {
+        setOwner(null);
+      }
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error("Erreur API :", err);
+      setLoading(false);
+    });
+}, []);
+
+  return (
+    <main className="min-h-screen bg-gray-800 flex items-center justify-center">
+      <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 text-black text-center">
+        <h2 className="text-2xl font-semibold">Résultat</h2>
+
+        {loading ? (
+          <p className="text-gray-600">Chargement...</p>
+        ) : owner ? (
+          <div className="space-y-2 text-left text-lg">
+            <p>
+              <strong>Nom :</strong> {owner.ownerName}
+            </p>
+            <p>
+              <strong>Prénom :</strong> {owner.ownerFirstName}
+            </p>
+            <p>
+              <strong>ID :</strong> {owner.ownerId}
+            </p>
+            <p>
+              <strong>Nombre animaux :</strong> {owner.numberOfAnimals}
+            </p>
+          </div>
+        ) : (
+          <p className="text-red-500">Aucun propriétaire trouvé.</p>
+        )}
+
+        <button
+          onClick={() => router.push("/")}
+          className="mt-4 bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-900 transition"
+        >
+          Retour à l’accueil
+        </button>
+      </div>
+    </main>
+  );
+}
