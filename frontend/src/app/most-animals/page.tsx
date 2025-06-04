@@ -43,7 +43,7 @@ export default function MostAnimalPage() {
   return (
     <main className="min-h-screen bg-gray-800 flex items-center justify-center">
       <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 text-black text-center">
-        <h2 className="text-2xl font-semibold">Résultat</h2>
+        <h2 className="text-2xl font-semibold">Résultat propriétaires qui a le plus d’animaux</h2>
 
         {loading ? (
           <p className="text-gray-600">Chargement...</p>

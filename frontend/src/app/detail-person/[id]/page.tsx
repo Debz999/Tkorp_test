@@ -1,59 +1,64 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
-type OwnerData = {
-  ownerId: string;
-  ownerName: string;
-  ownerFirstName: string;
-  numberOfCat: number;
+type PersonData = {
+  id: number;
+  lastName: string;
+  firstName: string;
+  email: string;
+  phoneNumber: string;
 };
 
-export default function MostCatPage() {
-  const [owner, setOwner] = useState<OwnerData | null>(null);
+export default function PersonDetailPage() {
+  const [person, setPerson] = useState<PersonData | null>(null);
   const [loading, setLoading] = useState(true);
+  const { id } = useParams();
   const router = useRouter();
 
   useEffect(() => {
-    fetch("http://localhost:3001/animal/most-Cat")
+    if (!id) return;
+
+    fetch(`http://localhost:3001/person/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        setOwner(data);
+        setPerson(data);
         setLoading(false);
       })
       .catch((err) => {
         console.error("Erreur API :", err);
         setLoading(false);
-        
       });
-      
-  }, []);
+  }, [id]);
 
   return (
     <main className="min-h-screen bg-gray-800 flex items-center justify-center">
       <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md space-y-6 text-black text-center">
-        <h2 className="text-2xl font-semibold">Résultat propriétaires qui a le plus de chat</h2>
+        <h2 className="text-2xl font-semibold">Détails propriétaire</h2>
 
         {loading ? (
-          <p className="text-gray-600">Chargement...</p>
-        ) : owner ? (
-          <div className="space-y-2 text-left text-lg">
+          <p>Chargement...</p>
+        ) : person ? (
+          <div className="text-left text-lg space-y-2">
             <p>
-              <strong>Nom :</strong> {owner.ownerName}
+              <strong>Nom :</strong> {person.lastName}
             </p>
             <p>
-              <strong>Prénom :</strong> {owner.ownerFirstName}
+              <strong>Prénom :</strong> {person.firstName}
             </p>
             <p>
-              <strong>ID :</strong> {owner.ownerId}
+              <strong>ID :</strong> {person.id}
             </p>
             <p>
-              <strong>Nombre de chats :</strong> {owner.numberOfCat}
+              <strong>Telephone:</strong> {person.phoneNumber}
+            </p>
+            <p>
+              <strong>Email :</strong> {person.email}g
             </p>
           </div>
         ) : (
-          <p className="text-red-500">Aucun propriétaire trouvé.</p>
+          <p className="text-red-500">Personne introuvable.</p>
         )}
 
         <button
