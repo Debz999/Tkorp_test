@@ -202,6 +202,7 @@ export class AnimalService {
         firstName: true,
         email: true,
         phoneNumber: true,
+        id: true,
       },
     });
 
@@ -220,6 +221,7 @@ export class AnimalService {
         firstName: owner.firstName,
         email: owner.email,
         phoneNumber: owner.phoneNumber,
+        id: owner.id,
       },
     };
   }
@@ -254,6 +256,7 @@ export class AnimalService {
         firstName: true,
         email: true,
         phoneNumber: true,
+        id: true,
       },
     });
 

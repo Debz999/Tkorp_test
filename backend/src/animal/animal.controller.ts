@@ -33,6 +33,11 @@ export class AnimalController {
     return this.animalService.remove(id);
   }
 
+  @Get()
+  findAll(): Promise<animal[]> {
+    return this.animalService.findAll();
+  }
+
   @Get('most-animals')
   ownerWithMostAnimals() {
     return this.animalService.ownerWithMostAnimals();
@@ -61,5 +66,10 @@ export class AnimalController {
   @Get('heaviest-group')
   heaviestAnimalGroup() {
     return this.animalService.heaviestAnimalGroup();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.animalService.findOne(+id);
   }
 }
