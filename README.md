@@ -1,64 +1,60 @@
- Test Tkorp
+# Tkorp - Projet Fullstack
 
-Ce projet a été réalisé dans le cadre d'un test technique pour l’entreprise Tkorp, en vue d’un stage de 6 mois.
+Ce projet est une application web composée de deux parties :
+- 🔙 Un **backend** NestJS avec Prisma pour gérer les données et la logique métier
+- 🔜 Un **frontend** Next.js avec TypeScript pour l’interface utilisateur
 
-## 🛠️ Stack technique
+## 📁 Structure du projet
 
-### Backend
+```
+Tkorp_test/
+│
+├── backend/       → API NestJS + Prisma
+│   ├── .env.example
+│   └── README.md
+│
+├── frontend/      → Interface utilisateur Next.js + TS
+│   └── README.md
+│
+└── README.md      → Ce fichier
+```
 
-- **NestJS**  
-  
-- **Prisma**  
+## 🚀 Lancer le projet localement
 
-- **BDD MySQL**  
-
-### Frontend
-
-- **Next.js**  
-
-
-## ✨ Fonctionnalités principales
-
-- Création et consultation de données via une API REST (Nest + Prisma)
-- Interface responsive en React avec Next.js
-- Connexion sécurisée entre le front et le back
-
-## 🚀 Lancer le projet en local
-
-### Prérequis
-
-
-
-### Installation
-
+### 1. Cloner le dépôt
 ```bash
-# 1. Cloner le dépôt
-git clone https://github.com/ton-utilisateur/test-tkorp.git
-cd test-tkorp
+git clone https://github.com/Debz999/Tkorp_test.git
+cd Tkorp_test
+```
 
-# 2. Installer les dépendances pour le backend
+### 2. Installer les dépendances
+```bash
+cd backend && npm install
+cd ../frontend && npm install
+```
+
+### 3. Configurer les environnements
+- Copier le fichier `.env.example` dans `backend/` et le renommer en `.env`
+- Adapter les valeurs si nécessaire
+
+### 4. Lancer le backend
+```bash
 cd backend
-npm install
-
-# 3. Configurer l'environnement
-cp .env.example .env
-# puis renseigner les infos de connexion à la base
-
-# 4. Lancer Prisma
 npx prisma generate
-npx prisma migrate dev --name init
-
-# 5. Lancer le serveur NestJS
+npx prisma migrate dev
 npm run start:dev
+```
 
-# 6. Installer les dépendances du frontend
+### 5. Lancer le frontend
+```bash
 cd ../frontend
-npm install
-
-# 7. Lancer le front Next.js
 npm run dev
+```
 
-## 🙋‍♀️ Auteur
+---
 
-- Déborah Setboune
-  Développeuse fullstack 
+## 📌 Infos techniques
+
+- Backend : NestJS, Prisma, MySQL
+- Frontend : Next.js, TypeScript
+- Base de données : hébergée localement ou à distance
